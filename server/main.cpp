@@ -17,6 +17,8 @@
 
 #include "listener.hpp"
 #include "shared_state.hpp"
+
+#include <boost/beast/src.hpp>
 #include <boost/asio/signal_set.hpp>
 #include <iostream>
 

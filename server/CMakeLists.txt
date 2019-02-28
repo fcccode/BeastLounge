@@ -7,6 +7,11 @@
 # Official repository: https://github.com/boostorg/beast
 #
 
+#source_group ("" FILES ${APP_FILES})
+#source_group (TREE ${Boost_INCLUDE_DIRS}/boost/beast PREFIX beast FILES ${BEAST_FILES})
+#GroupSources (${Boost_INCLUDE_DIRS}/boost/beast beast)
+#GroupSources (${PROJECT_SOURCE_DIR}/nlohmann/include/nlohmann nlohmann)
+
 file (GLOB APP_FILES
   beast.hpp
   http_session.cpp
@@ -23,10 +28,17 @@ file (GLOB APP_FILES
   README.md
 )
 
-source_group ("" FILES ${APP_FILES})
 source_group (TREE ${Boost_INCLUDE_DIRS}/boost/beast PREFIX beast FILES ${BEAST_FILES})
+source_group (TREE ${PROJECT_SOURCE_DIR}/include/boost/beast PREFIX beast FILES ${BEAST_EXTRA_FILES})
+source_group (TREE ${PROJECT_SOURCE_DIR}/nlohmann/include/nlohmann PREFIX nlohmann FILES ${NLOHMANN_FILES})
+source_group (TREE ${CMAKE_CURRENT_SOURCE_DIR} PREFIX "" FILES ${APP_FILES})
 
-add_executable (lounge-server ${APP_FILES} ${BEAST_FILES})
+add_executable (lounge-server
+    ${APP_FILES}
+    ${BEAST_FILES}
+    ${BEAST_EXTRA_FILES}
+    ${NLOHMANN_FILES}
+    )
 
 if(NOT WIN32)
   find_package (Threads)

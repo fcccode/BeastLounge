@@ -14,20 +14,18 @@ file (GLOB APP_FILES
     empty.cpp
 )
 
-file (GLOB_RECURSE JSON_FILES
-  ${PROJECT_SOURCE_DIR}/include/nlohmann/*.hpp
-)
-
 source_group (TREE ${Boost_INCLUDE_DIRS}/boost/beast PREFIX beast FILES ${BEAST_FILES})
 source_group (TREE ${PROJECT_SOURCE_DIR}/include/boost/beast PREFIX beast FILES ${BEAST_EXTRA_FILES})
-source_group (TREE ${PROJECT_SOURCE_DIR}/include/nlohmann PREFIX nlohmann FILES ${NLOHMANN_FILES})
+source_group (TREE ${PROJECT_SOURCE_DIR}/nlohmann/include/nlohmann PREFIX nlohmann FILES ${NLOHMANN_FILES})
+source_group (TREE ${CMAKE_CURRENT_SOURCE_DIR} PREFIX "" FILES ${APP_FILES})
 source_group ("" FILES ${TEST_MAIN})
-source_group ("" FILES ${APP_FILES})
+
+add_definitions (-DBOOST_BEAST_SPLIT_COMPILATION)
 
 add_executable (tests
     ${BEAST_FILES}
     ${BEAST_EXTRA_FILES}
-    ${JSON_FILES}
+    ${NLOHMANN_FILES}
     ${TEST_MAIN}
     ${APP_FILES}
 )
