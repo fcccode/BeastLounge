@@ -37,19 +37,19 @@ using array  =
         value,
         allocator<value>>;
 
-using string_type =
+using string =
     std::basic_string<
         char,
         std::char_traits<char>,
         allocator<char>>;
 
-using raw_object_type = object;
-using raw_array_type = array;
-using raw_string_type = string_type;
-using raw_signed_type = std::int_least64_t;
-using raw_unsigned_type = std::uint_least64_t;
-using raw_floating_type = double;
-using raw_bool_type = bool;
+using signed64 = std::int_least64_t;
+
+using unsigned64 = std::uint_least64_t;
+
+using floating = double;
+
+using boolean = bool;
 
 } // json
 } // beast

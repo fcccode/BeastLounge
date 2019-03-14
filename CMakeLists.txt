@@ -87,8 +87,6 @@ endfunction()
 
 #-------------------------------------------------------------------------------
 
-add_definitions (-DBOOST_BEAST_SPLIT_COMPILATION)
-
 include_directories (${PROJECT_SOURCE_DIR}/include)
 
 add_subdirectory (server)
